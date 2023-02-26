@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set variables
-RESOURCE_GROUP=aks_rd
-CLUSTER_NAME=aks_clusters
+RESOURCE_GROUP=resourceGroup
+CLUSTER_NAME=aks_cluster
 LOCATION=eastus
 NAMESPACE=kubeflow-dev
 KF_VERSION=v1.3.0
