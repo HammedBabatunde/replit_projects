@@ -1,5 +1,11 @@
 # Replit Projects
 
+Clone the repo, then:
+
+```sh
+cd kuberdeploy
+```
+
 Make the files executable by running these commands:
 
 ```sh
