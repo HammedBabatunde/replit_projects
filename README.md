@@ -21,3 +21,5 @@ After the installation, run the file
 ```sh
 bash deploy.sh
 ```
+
+You might need `sudo` permission to run the commands.
