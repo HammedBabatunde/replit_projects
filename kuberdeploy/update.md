@@ -1,4 +1,4 @@
-# The error message indicates that the deployment script is unable to locate the kustomize binary, which is required by Kubeflow to generate Kubernetes manifests.
+# The error message indicates that the deployment script is unable to locate the kustomize binary, which is required by Kubeflow to generate Kubernetes manifests
 
 To fix this error, you can install kustomize on your machine and ensure that the script can find it. Here's how:
 
