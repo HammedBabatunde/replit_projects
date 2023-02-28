@@ -6,7 +6,7 @@ CLUSTER_NAME=aks_cluster
 LOCATION=eastus
 NAMESPACE=kubeflow-dev
 KF_VERSION=v1.3.0
-KUSTOMIZE_VERSION=$(kustomize version | grep Version | awk '{print $2}')
+KUSTOMIZE_VERSION=5.0.0
 # KUSTOMIZE=/usr/local/bin/kustomize
 
 # Create resource group
@@ -22,7 +22,8 @@ az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
 kubectl create namespace $NAMESPACE
 kubectl config set-context --current --namespace=$NAMESPACE
 # kubectl apply -k "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}"
-kubectl kustomize "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}" | $KUSTOMIZE_VERSION build - | kubectl apply -f -
+# kubectl kustomize "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}" | $KUSTOMIZE_VERSION build - | kubectl apply -f -
+kubectl kustomize "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}" | kubectl apply --kustomize=- --kustomize-version=$KUSTOMIZE_VERSION
 
 # Wait for deployment to finish
 kubectl wait --for=condition=available --timeout=10m deployment --all -n $NAMESPACE
