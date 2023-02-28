@@ -20,7 +20,8 @@ az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
 # Install kubeflow
 kubectl create namespace $NAMESPACE
 kubectl config set-context --current --namespace=$NAMESPACE
-kubectl apply -k "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}"
+# kubectl apply -k "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}"
+kubectl kustomize "github.com/kubeflow/manifests/kustomize/${KF_VERSION}?ref=${KF_VERSION}" | $KUSTOMIZE_VERSION build - | kubectl apply -f -
 
 # Wait for deployment to finish
 kubectl wait --for=condition=available --timeout=10m deployment --all -n $NAMESPACE
