@@ -28,8 +28,8 @@ kubectl config set-context --current --namespace=$NAMESPACE
 mkdir kubeflow
 cd kubeflow
 curl -sSL "https://github.com/kubeflow/manifests/archive/v${KF_VERSION}.tar.gz" | tar xz
-cd manifests-${KF_VERSION}/
-kubectl apply -k ${NAMESPACE}
+cd manifests-${KF_VERSION}/kustomize
+kubectl apply -k ${NAMESPACE}/base
 
 # Wait for deployment to finish
 kubectl wait --for=condition=available --timeout=10m deployment --all -n $NAMESPACE
