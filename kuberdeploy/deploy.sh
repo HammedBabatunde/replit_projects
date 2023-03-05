@@ -28,10 +28,10 @@ kubectl config set-context --current --namespace=$NAMESPACE
 brew install kustomize
 
 # Clone Kubeflow manifests repository
-git clone --branch v1.3-branch --single-branch https://github.com/kubeflow/manifests.git
+git clone --branch v1.4-branch --single-branch https://github.com/kubeflow/manifests.git
 
 # Build Kubeflow manifests using kustomize
-cd manifests/v1.3-branch/
+cd manifests/v1.4-branch/
 kustomize build manifests/kustomize/env/azure > kubeflow.yaml
 
 # Deploy Kubeflow
