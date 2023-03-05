@@ -6,9 +6,7 @@ CLUSTER_NAME=aks_cluster
 LOCATION=eastus
 NAMESPACE=kubeflow-dev
 
-#Remember to try different version
-# export KF_VERSION=1.3.0
-export KF_VERSION=1.4.1
+#You can try different version of kuberflow 1.3.0
 
 
 # Create resource group
