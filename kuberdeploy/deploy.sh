@@ -24,15 +24,24 @@ az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
 kubectl create namespace $NAMESPACE
 kubectl config set-context --current --namespace=$NAMESPACE
 
-# Install Kuberflow
-mkdir kubeflow
-cd kubeflow
-curl -sSL "https://github.com/kubeflow/manifests/archive/v${KF_VERSION}.tar.gz" | tar xz
-cd manifests-${KF_VERSION}/kustomize
-kubectl apply -k ${NAMESPACE}/base
+# Install kustomize
+brew install kustomize
+
+# Clone Kubeflow manifests repository
+git clone --branch v1.3-branch --single-branch https://github.com/kubeflow/manifests.git
+
+# Build Kubeflow manifests using kustomize
+cd manifests/v1.3-branch/
+kustomize build manifests/kustomize/env/azure > kubeflow.yaml
+
+# Deploy Kubeflow
+kubectl apply -f kubeflow.yaml -n $NAMESPACE
 
 # Wait for deployment to finish
 kubectl wait --for=condition=available --timeout=10m deployment --all -n $NAMESPACE
+
+# Verify Kubeflow deployment
+kubectl get pods -n $NAMESPACE
 
 # Display Kubeflow endpoint
 echo "Kubeflow endpoint:"
