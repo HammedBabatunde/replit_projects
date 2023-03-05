@@ -22,7 +22,7 @@ az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
 
 # Create namespace
 kubectl create namespace $NAMESPACE
-kubectl config set-context --current --namespace=$NAMESPACE
+# kubectl config set-context --current --namespace=$NAMESPACE
 
 # Install kustomize
 brew install kustomize
