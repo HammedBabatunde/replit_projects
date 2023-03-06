@@ -13,7 +13,14 @@ NAMESPACE=kubeflow-dev
 az group create --name $RESOURCE_GROUP --location $LOCATION
 
 # Create AKS cluster
-az aks create --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-count 2 --enable-addons monitoring --generate-ssh-keys --kubernetes-version 1.24.6 --location $LOCATION
+az aks create \
+    --resource-group $RESOURCE_GROUP \
+    --name $CLUSTER_NAME \
+    --node-count 2 \
+    --enable-addons monitoring \
+    --generate-ssh-keys \
+    --kubernetes-version 1.24.6 \
+    --location $LOCATION
 
 # Connect to cluster
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
