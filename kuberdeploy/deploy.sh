@@ -8,6 +8,8 @@ NAMESPACE=kubeflow-dev
 
 #You can try different version of kuberflow 1.3.0
 
+##login to azure
+az login
 
 # Create resource group
 az group create --name $RESOURCE_GROUP --location $LOCATION
